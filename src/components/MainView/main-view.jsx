@@ -21,7 +21,8 @@ export const MainView = () => {
       description:
         "A thief who enters the dreams of others to steal secrets from their subconscious. His latest target is a corporate heir who must implant an idea into his mind.",
       genre: "Science Fiction",
-      image: "https://www.movieposter.com/posters/archive/main/101/MPW-50948",
+      image:
+        "https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg",
       director: "Christopher Nolan",
     },
     {
@@ -30,7 +31,8 @@ export const MainView = () => {
       description:
         "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
       genre: "Crime",
-      image: "https://www.movieposter.com/posters/archive/main/10/A70-4915",
+      image:
+        "https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg",
       director: "Francis Ford Coppola",
     },
   ]);
