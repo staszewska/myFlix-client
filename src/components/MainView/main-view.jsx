@@ -45,8 +45,6 @@ export const MainView = () => {
 
   return (
     <div>
-      <pre>{JSON.stringify(selectedMovie, undefined, 2)}</pre>
-
       {movies.map((movie) => (
         <MovieCard
           key={movie.id}
