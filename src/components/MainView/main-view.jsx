@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { useState } from "react";
 import { MovieCard } from "../MovieCard/movie-card";
 import { MovieView } from "../MovieView/movie-view";
+import { LoginView } from "../LoginView/login-view";
 import { useState, useEffect } from "react";
 
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     fetch("https://movies-api-ms-b2173cbfa01b.herokuapp.com/movies")
@@ -25,7 +27,7 @@ export const MainView = () => {
           };
         });
 
-        console.log("movies after map:", moviesFromApi);
+        // console.log("movies after map:", moviesFromApi);
         setMovies(moviesFromApi);
       });
   }, []);
@@ -43,8 +45,19 @@ export const MainView = () => {
     );
   }
 
+  if (!user) {
+    return <LoginView onLoggedId={(user) => setUser(user)} />;
+  }
+
   return (
     <div>
+      <button
+        onClock={() => {
+          setUser(null);
+        }}
+      >
+        Logout
+      </button>
       {movies.map((movie) => (
         <MovieCard
           key={movie.id}
