@@ -16,7 +16,11 @@ export const NavBar = ({ user, onLogout }) => {
               <Link to={`/`}>Home</Link>
             </Nav.Link>
 
-            <Nav.Link href="#link">Profile</Nav.Link>
+            {user ? (
+              <Nav.Link>
+                <Link to={`/profile`}>Profile</Link>
+              </Nav.Link>
+            ) : null}
 
             {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -39,9 +43,11 @@ export const NavBar = ({ user, onLogout }) => {
               <Link to={`/signup`}>Sign up</Link>
             </>
           ) : (
-            <Link to={`/`} onClick={onLogout}>
-              Log out
-            </Link>
+            <>
+              <Link to={`/`} onClick={onLogout}>
+                Log out
+              </Link>
+            </>
           )}
         </Navbar.Collapse>
       </Container>
