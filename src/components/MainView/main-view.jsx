@@ -52,7 +52,7 @@ export const MainView = () => {
 
   return (
     <BrowserRouter>
-      <NavBar onLogout={handleLogout} />
+      <NavBar user={user} onLogout={handleLogout} />
       <Row className="justify-content-md-center">
         <Routes>
           <Route
