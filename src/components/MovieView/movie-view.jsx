@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-export const MovieView = ({ movie }) => {
+export const MovieView = ({ movies }) => {
+  const { movieId } = useParams();
+  const movie = movies.find((m) => m.id === movieId);
   return (
     <div>
       <div>
@@ -26,7 +29,9 @@ export const MovieView = ({ movie }) => {
         <span>Genre-Description: </span>
         <span>{movie.genreDescription}</span>
       </div>
-      <button>Back</button>
+      <Link to={`/`}>
+        <button className="back-button">Back</button>
+      </Link>
     </div>
   );
 };
