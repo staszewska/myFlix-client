@@ -1,9 +1,13 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router";
 
 export const MovieView = ({ movies }) => {
+  console.log("my movies: ", movies);
   const { movieId } = useParams();
+  console.log("my movie ID: ", movieId);
   const movie = movies.find((m) => m.id === movieId);
+  console.log("my movie is: ", movie);
   return (
     <div>
       <div>

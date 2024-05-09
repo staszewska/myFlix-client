@@ -90,7 +90,20 @@ export const MainView = () => {
             }
           />
 
-          <Route path="/movies/:movieId" element={<h1>MovieID</h1>} />
+          <Route
+            path="/movies/:movieId"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" />
+                ) : (
+                  <Col md={8}>
+                    <MovieView movies={movies} />
+                  </Col>
+                )}
+              </>
+            }
+          />
 
           <Route
             path="/"
@@ -104,7 +117,7 @@ export const MainView = () => {
                   <>
                     {movies.map((movie) => (
                       <Col className="mb-5" key={movie.id} md={3}>
-                        <MovieCard key={movie.id} movie={movie} />
+                        <MovieCard movie={movie} />
                       </Col>
                     ))}
                   </>
