@@ -4,6 +4,8 @@ import { Navigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { MovieCard } from "../MovieCard/movie-card";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 export const ProfileView = ({ user, movies }) => {
   console.log("movies:", movies);
@@ -34,19 +36,22 @@ export const ProfileView = ({ user, movies }) => {
   console.log(user.favoriteMovies);
   return (
     <>
-      <div>
-        <h2>Favorite Movies</h2>
-
-        <div className="movie-list">
+      <Row>
+        <Col xs={2}>
+          <h3>Favorite Movies</h3>
+        </Col>
+        <Row>
           {favoriteMovies.length === 0 ? (
             <div>No movies</div>
           ) : (
             favoriteMovies.map((movie) => (
-              <MovieCard key={movie._id} movie={movie} />
+              <Col xs={12} md={6}>
+                <MovieCard key={movie._id} movie={movie} />
+              </Col>
             ))
           )}
-        </div>
-      </div>
+        </Row>
+      </Row>
 
       <Form>
         <h2>Profile</h2>
