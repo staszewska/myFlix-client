@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 
 export const MovieView = ({ movies }) => {
-  console.log("my movies: ", movies);
+  // console.log("my movies: ", movies);
   const { movieId } = useParams();
-  console.log("my movie ID: ", movieId);
+  // console.log("my movie ID: ", movieId);
   const movie = movies.find((m) => m.id === movieId);
-  console.log("my movie is: ", movie);
+  // console.log("my movie is: ", movie);
   return (
     <div>
       <div>
@@ -49,5 +49,4 @@ MovieView.propTypes = {
     genre: PropTypes.string,
     genreDescription: PropTypes.string,
   }).isRequired,
-  onBackClick: PropTypes.func.isRequired,
 };
