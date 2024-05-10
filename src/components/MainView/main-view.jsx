@@ -51,6 +51,11 @@ export const MainView = () => {
     localStorage.clear();
   };
 
+  const handleUserProfileUpdate = (userData) => {
+    setUser(userData);
+    localStorage.setItem("user", JSON.stringify(userData));
+  };
+
   return (
     <BrowserRouter>
       <NavBar user={user} onLogout={handleLogout} />
@@ -95,7 +100,11 @@ export const MainView = () => {
             path="/profile"
             element={
               <>
-                <ProfileView user={user} movies={movies} />
+                <ProfileView
+                  user={user}
+                  movies={movies}
+                  onUserProfileUpdate={handleUserProfileUpdate}
+                />
               </>
             }
           />
