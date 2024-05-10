@@ -95,7 +95,7 @@ export const MainView = () => {
             path="/profile"
             element={
               <>
-                <ProfileView user={user} />
+                <ProfileView user={user} movies={movies} />
               </>
             }
           />
