@@ -4,6 +4,7 @@ import { MovieCard } from "../MovieCard/movie-card";
 import { MovieView } from "../MovieView/movie-view";
 import { LoginView } from "../LoginView/login-view";
 import { SignupView } from "../SignupView/signup-view";
+import { ProfileView } from "../ProfileView/profile-view";
 import { NavBar } from "../NavBar/nav-bar";
 import { useState, useEffect } from "react";
 import Row from "react-bootstrap/Row";
@@ -86,6 +87,15 @@ export const MainView = () => {
                 ) : (
                   <Navigate to="/" />
                 )}
+              </>
+            }
+          />
+
+          <Route
+            path="/profile"
+            element={
+              <>
+                <ProfileView user={user} />
               </>
             }
           />
