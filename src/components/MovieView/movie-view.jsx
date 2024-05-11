@@ -43,7 +43,7 @@ export const MovieView = ({ movies, user, onUserProfileUpdate }) => {
     )
       .then((response) => {
         if (response.ok) {
-          alert("Movie added to favorites successfully!");
+          // alert("Movie added to favorites successfully!");
           return response.json();
         } else {
           alert("ERROR: Something went wrong!");
@@ -59,7 +59,34 @@ export const MovieView = ({ movies, user, onUserProfileUpdate }) => {
       });
   }
 
-  function handleDeleteMovieFromFavorite() {}
+  function handleDeleteMovieFromFavorite() {
+    fetch(
+      `https://movies-api-ms-b2173cbfa01b.herokuapp.com/users/${user.Name}/movies/${movieId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          // alert("Movie removed from favorites successfully!");
+          return response.json();
+        } else {
+          alert("ERROR: Something went wrong!");
+        }
+      })
+      .then((updatedUser) => {
+        setIsFavorite(false);
+        console.log("[MovieView] updatedUser:", updatedUser);
+        onUserProfileUpdate(updatedUser);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
   return (
     <>
@@ -108,7 +135,9 @@ export const MovieView = ({ movies, user, onUserProfileUpdate }) => {
           )}
 
           <Link to={`/`}>
-            <Button className="back-button">Back</Button>
+            <Button className="back-button" variant="secondary">
+              Back
+            </Button>
           </Link>
         </div>
       ) : (
