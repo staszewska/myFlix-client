@@ -117,7 +117,11 @@ export const MainView = () => {
                   <Navigate to="/login" />
                 ) : (
                   <Col md={8}>
-                    <MovieView movies={movies} />
+                    <MovieView
+                      movies={movies}
+                      user={user}
+                      onUserProfileUpdate={handleUserProfileUpdate}
+                    />
                   </Col>
                 )}
               </>
