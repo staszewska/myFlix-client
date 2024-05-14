@@ -8,14 +8,10 @@ export const NavBar = ({ user, onLogout }) => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home">MyFlix-App</Navbar.Brand>
+        <Navbar.Brand href="/">MyFlix-App</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link>
-              <Link to={`/`}>Home</Link>
-            </Nav.Link>
-
             {user ? (
               <Nav.Link>
                 <Link to={`/profile`}>Profile</Link>

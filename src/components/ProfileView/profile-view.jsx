@@ -131,33 +131,6 @@ export const ProfileView = ({ user, movies, onUserProfileUpdate }) => {
   // console.log(user.favoriteMovies);
   return (
     <>
-      <Row>
-        <Col xs={2}>
-          <h3>Favorite Movies</h3>
-        </Col>
-        <Row>
-          {favoriteMovies.length === 0 ? (
-            <div>No movies</div>
-          ) : (
-            favoriteMovies.map((movie) => (
-              <Col xs={12} md={6} key={movie._id}>
-                <MovieCard movie={movie} />
-              </Col>
-            ))
-          )}
-        </Row>
-      </Row>
-
-      <Row>
-        <h3>Profile</h3>
-        <p>Username: {userData.Name}</p>
-        <p>Password: {userData.Password}</p>
-        <p>Email: {userData.Email}</p>
-        <p>Birthday: {userData.Birthday}</p>
-        <p>Country: {userData.Country}</p>
-        <p>Gender: {userData.Gender}</p>
-      </Row>
-
       <Form onSubmit={handleSubmit}>
         <h2>Update profile</h2>
         <Form.Group className="mb-3" controlId="formUsername">
@@ -236,9 +209,30 @@ export const ProfileView = ({ user, movies, onUserProfileUpdate }) => {
           Submit
         </Button>
 
-        <Button variant="danger" onClick={handleDeregisterClick}>
-          Delete Account
-        </Button>
+        <Row className="mt-3">
+          <Col xs={2} lg={4}>
+            <h2>Favorite Movies</h2>
+          </Col>
+          <Row>
+            {favoriteMovies.length === 0 ? (
+              <div>No movies</div>
+            ) : (
+              favoriteMovies.map((movie) => (
+                <Col xs={12} md={6} lg={4} key={movie._id}>
+                  <MovieCard movie={movie} />
+                </Col>
+              ))
+            )}
+          </Row>
+        </Row>
+
+        <Row className="mt-3">
+          <Col xs={12}>
+            <Button variant="danger" onClick={handleDeregisterClick}>
+              Delete Account
+            </Button>
+          </Col>
+        </Row>
       </Form>
     </>
   );
