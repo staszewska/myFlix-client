@@ -12,6 +12,7 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { GenreFilter } from "../Filter/genre-filter";
+import "dotenv/config";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -26,6 +27,7 @@ export const MainView = () => {
       return;
     }
 
+    // fetch(`${process.env.DEV_API_URL}/movies`, {
     fetch("https://movies-api-ms-b2173cbfa01b.herokuapp.com/movies", {
       headers: { Authorization: `Bearer ${token}` },
     })

@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import "dotenv/config";
 
 export const SignupView = () => {
   const [username, setUsername] = useState("");
@@ -23,7 +24,8 @@ export const SignupView = () => {
       Gender: gender,
     };
 
-    fetch("https://movies-api-ms-b2173cbfa01b.herokuapp.com/users", {
+    // fetch(`${process.env.DEV_API_URL}/users`, {
+    fetch(`https://movies-api-ms-b2173cbfa01b.herokuapp.com/user`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {

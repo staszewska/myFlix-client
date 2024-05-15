@@ -4,6 +4,7 @@ import { Navigate } from "react-router-dom";
 import { MovieCard } from "../MovieCard/movie-card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import "dotenv/config";
 
 export const ProfileView = ({ user, movies, onUserProfileUpdate }) => {
   // console.log("movies:", movies);
@@ -54,6 +55,7 @@ export const ProfileView = ({ user, movies, onUserProfileUpdate }) => {
   function handleDeregisterClick() {
     alert("Caution: This is a destructive operation. Proceed with care");
 
+    // fetch(`${process.env.DEV_API_URL}/users/${user.Name}`, {
     fetch(
       `https://movies-api-ms-b2173cbfa01b.herokuapp.com/users/${user.Name}`,
       {
@@ -90,6 +92,7 @@ export const ProfileView = ({ user, movies, onUserProfileUpdate }) => {
     userData._id = user._id;
     console.log("Updated User Data:", userData);
 
+    // fetch(`${process.env.DEV_API_URL}/users/${user.Name}`, {
     fetch(
       `https://movies-api-ms-b2173cbfa01b.herokuapp.com/users/${user.Name}`,
       {
@@ -102,10 +105,13 @@ export const ProfileView = ({ user, movies, onUserProfileUpdate }) => {
       }
     )
       .then((response) => {
+        alert();
+        console.log("[ProfileView] response:", response);
+
         if (response.ok) {
           // handle success
-          setUserData(userData);
-          onUserProfileUpdate(userData);
+          // setUserData(userData);
+          // onUserProfileUpdate(userData);
 
           console.log("User data updated successfully!");
           alert("User profile updated successfully!");

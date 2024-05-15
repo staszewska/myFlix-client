@@ -2,6 +2,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useState, useEffect } from "react";
+import "dotenv/config";
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
@@ -17,6 +18,7 @@ export const LoginView = ({ onLoggedIn }) => {
 
     console.log("Login response: ", data);
 
+    // fetch(`${process.env.DEV_API_URL}/login`, {
     fetch("https://movies-api-ms-b2173cbfa01b.herokuapp.com/login", {
       method: "POST",
       headers: {
