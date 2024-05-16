@@ -132,7 +132,7 @@ export const ProfileView = ({ user, movies, onUserProfileUpdate }) => {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <h2>Update profile</h2>
+        <h2>Profile</h2>
         <Form.Group className="mb-3" controlId="formUsername">
           <Form.Label>Username</Form.Label>
           <Form.Control

@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 
 export const MovieView = ({ movies, user, onUserProfileUpdate }) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -123,6 +126,14 @@ export const MovieView = ({ movies, user, onUserProfileUpdate }) => {
               variant="primary"
             >
               Add to favorites
+              {/* <FontAwesomeIcon
+                icon={regularHeart}
+                style={{ marginLeft: "5px" }}
+              /> */}
+              <FontAwesomeIcon
+                icon={solidHeart}
+                style={{ marginLeft: "5px", color: "red" }}
+              />
             </Button>
           ) : (
             <Button
@@ -131,6 +142,10 @@ export const MovieView = ({ movies, user, onUserProfileUpdate }) => {
               variant="outline-primary"
             >
               Remove from favorites
+              <FontAwesomeIcon
+                icon={regularHeart}
+                style={{ marginLeft: "5px" }}
+              />
             </Button>
           )}
 

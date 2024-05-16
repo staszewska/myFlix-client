@@ -11,6 +11,7 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { GenreFilter } from "../Filter/genre-filter";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -18,6 +19,7 @@ export const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
+  const [selectedGenre, setSelectedGenre] = useState("");
 
   useEffect(() => {
     if (!token) {
@@ -56,9 +58,24 @@ export const MainView = () => {
     localStorage.setItem("user", JSON.stringify(userData));
   };
 
+  const handleGenreChange = (genre) => {
+    setSelectedGenre(genre);
+  };
+
+  //function to filter movies based on selected genre
+  const filteredMovies = selectedGenre
+    ? movies.filter((movie) => movie.genre === selectedGenre)
+    : movies;
+
   return (
     <BrowserRouter>
       <NavBar user={user} onLogout={handleLogout} />
+
+      <Row className="mt-3">
+        <h1>Movie Filter</h1>
+        <GenreFilter onSelectGenre={handleGenreChange} />
+      </Row>
+
       <Row className="justify-content-md-center">
         <Routes>
           <Route
@@ -128,7 +145,7 @@ export const MainView = () => {
             }
           />
 
-          <Route
+          {/* <Route
             path="/"
             element={
               <>
@@ -143,6 +160,35 @@ export const MainView = () => {
                         <MovieCard movie={movie} />
                       </Col>
                     ))}
+                  </>
+                )}
+              </>
+            }
+          /> */}
+
+          <Route
+            path="/"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : selectedGenre && filteredMovies.length === 0 ? (
+                  <Col>The list is empty!</Col>
+                ) : (
+                  <>
+                    {/* if both conditions are met we render filtered movies */}
+                    {selectedGenre
+                      ? filteredMovies.map((movie) => (
+                          <Col className="mb-5" key={movie.id} md={3}>
+                            <MovieCard movie={movie} />
+                          </Col>
+                        ))
+                      : // render all movies
+                        movies.map((movie) => (
+                          <Col className="mb-5" key={movie.id} md={3}>
+                            <MovieCard movie={movie} />
+                          </Col>
+                        ))}
                   </>
                 )}
               </>
