@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "dotenv/config";
+import { useNavigate } from "react-router-dom";
 
 export const SignupView = () => {
   const [username, setUsername] = useState("");
@@ -11,6 +12,8 @@ export const SignupView = () => {
   const [birthday, setBirthday] = useState("");
   const [country, setCountry] = useState("");
   const [gender, setGender] = useState("");
+
+  let navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -25,7 +28,7 @@ export const SignupView = () => {
     };
 
     // fetch(`${process.env.DEV_API_URL}/users`, {
-    fetch(`https://movies-api-ms-b2173cbfa01b.herokuapp.com/user`, {
+    fetch(`https://movies-api-ms-b2173cbfa01b.herokuapp.com/users`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -35,7 +38,8 @@ export const SignupView = () => {
       .then((response) => {
         if (response.ok) {
           alert("Signup successful");
-          window.location.reload();
+          // window.location.reload()
+          navigate("/login");
         } else {
           alert("Signup failed");
         }
