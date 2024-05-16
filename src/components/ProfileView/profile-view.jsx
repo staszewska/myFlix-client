@@ -105,20 +105,22 @@ export const ProfileView = ({ user, movies, onUserProfileUpdate }) => {
       }
     )
       .then((response) => {
-        alert();
-        console.log("[ProfileView] response:", response);
-
         if (response.ok) {
-          // handle success
-          // setUserData(userData);
-          // onUserProfileUpdate(userData);
-
-          console.log("User data updated successfully!");
-          alert("User profile updated successfully!");
+          return response.json();
         } else {
           // handle error
           console.error("Failed to update user data");
         }
+      })
+      .then((userData) => {
+        console.log("[ProfileView] updated userData:", userData);
+        // handle success
+        userData.Password = "";
+        setUserData(userData);
+        onUserProfileUpdate(userData);
+
+        console.log("User data updated successfully!");
+        alert("User profile updated successfully!");
       })
       .catch((error) => {
         console.error("Error:", error);
