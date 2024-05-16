@@ -57,6 +57,10 @@ export const MainView = () => {
 
   const handleUserProfileUpdate = (userData) => {
     setUser(userData);
+    if (!userData) {
+      localStorage.clear();
+      return;
+    }
     localStorage.setItem("user", JSON.stringify(userData));
   };
 
