@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
+import "dotenv/config";
 
 export const MovieView = ({ movies, user, onUserProfileUpdate }) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -34,6 +35,7 @@ export const MovieView = ({ movies, user, onUserProfileUpdate }) => {
 
   // function to handle adding movie to favorites
   function handleAddMovieAsFavorite() {
+    // fetch(`${process.env.DEV_API_URL}/users/${user.Name}/movies/${movieId}`, {
     fetch(
       `https://movies-api-ms-b2173cbfa01b.herokuapp.com/users/${user.Name}/movies/${movieId}`,
       {
@@ -63,6 +65,7 @@ export const MovieView = ({ movies, user, onUserProfileUpdate }) => {
   }
 
   function handleDeleteMovieFromFavorite() {
+    // fetch(`${process.env.DEV_API_URL}/users/${user.Name}/movies/${movieId}`, {
     fetch(
       `https://movies-api-ms-b2173cbfa01b.herokuapp.com/users/${user.Name}/movies/${movieId}`,
       {

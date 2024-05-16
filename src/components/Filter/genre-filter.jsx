@@ -2,6 +2,7 @@ import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
+import "dotenv/config";
 
 export const GenreFilter = ({ onSelectGenre }) => {
   const [genres, setGenres] = useState([]);
@@ -9,6 +10,7 @@ export const GenreFilter = ({ onSelectGenre }) => {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
+    // fetch(`${process.env.DEV_API_URL}/movies/}`, {
     fetch(`https://movies-api-ms-b2173cbfa01b.herokuapp.com/movies/`, {
       method: "GET",
       headers: {
