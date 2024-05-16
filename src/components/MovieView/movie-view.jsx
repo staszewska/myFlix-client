@@ -25,13 +25,18 @@ export const MovieView = ({ movies, user, onUserProfileUpdate }) => {
     const movie = movies.find((m) => m.id === movieId);
     console.log("my movie is: ", movie);
     setMovie(movie);
+    console.log("my user: ", user);
+
+    if (!user.favoriteMovies) {
+      return;
+    }
 
     const isMarkedAsFavorite = user.favoriteMovies.find(
       (favoriteMovieId) => favoriteMovieId === movieId
     );
     console.log("[MovieView] isMarkedAsFavorite:", isMarkedAsFavorite);
     setIsFavorite(isMarkedAsFavorite);
-  }, [movies]);
+  }, [movies, user.favoriteMovies, movieId]);
 
   // function to handle adding movie to favorites
   function handleAddMovieAsFavorite() {
