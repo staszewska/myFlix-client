@@ -5,6 +5,7 @@ import { MovieCard } from "../MovieCard/movie-card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "dotenv/config";
+import { useNavigate } from "react-router-dom";
 
 export const ProfileView = ({ user, movies, onUserProfileUpdate }) => {
   // console.log("movies:", movies);
@@ -17,11 +18,16 @@ export const ProfileView = ({ user, movies, onUserProfileUpdate }) => {
     Country: "",
     Gender: "",
   });
+  let navigate = useNavigate();
 
   // console.log(user);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
+    if (!user) {
+      return;
+    }
+
     if (user.favoriteMovies) {
       const filteredMovies = movies.filter((movie) => {
         return user.favoriteMovies.includes(movie.id);
@@ -70,8 +76,13 @@ export const ProfileView = ({ user, movies, onUserProfileUpdate }) => {
       .then((response) => {
         if (response.ok) {
           // handle success
-          setUserData(userData);
+
           console.log("User has been deregistered successfully!");
+          // setUserData(null);
+          onUserProfileUpdate(null);
+
+          // redirect to /login page
+          navigate("/login");
         } else {
           // handle error
           console.error("Failed to delete user account");
