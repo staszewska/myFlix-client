@@ -19,3 +19,7 @@ The objective of this project is to develop the client-side for an app called my
 ## Technology Stack
 
 The project follows the MERN stack, utilizing React for UI, Bootstrap for styling, and Parcel for bundling. ES2015+ standards and function components are employed for efficient code organization and readability.
+
+## Preview
+
+## [You can see the project here](https://myflixms.netlify.app/login)
