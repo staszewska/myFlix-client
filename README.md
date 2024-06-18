@@ -22,4 +22,4 @@ The project follows the MERN stack, utilizing React for UI, Bootstrap for stylin
 
 ## Preview
 
-## [You can see the project here](https://myflixms.netlify.app/login)
+You can see the project [here](https://myflixms.netlify.app/login)
