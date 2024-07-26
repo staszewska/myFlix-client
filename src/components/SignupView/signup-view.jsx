@@ -5,6 +5,11 @@ import Form from "react-bootstrap/Form";
 import "dotenv/config";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * component for user registration
+ *
+ * @returns {JSX.Element}
+ */
 export const SignupView = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -15,6 +20,11 @@ export const SignupView = () => {
 
   let navigate = useNavigate();
 
+  /**
+   * handles form submission for user registration
+   *
+   * @param {Object} event
+   */
   const handleSubmit = (event) => {
     event.preventDefault();
 

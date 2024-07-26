@@ -4,6 +4,12 @@ import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
+/**
+ * component to display the navigation bar
+ * @param {Object} - user
+ * @param {Function} - onLogout
+ * @returns {JSX.Element}
+ */
 export const NavBar = ({ user, onLogout }) => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
@@ -17,18 +23,6 @@ export const NavBar = ({ user, onLogout }) => {
                 <Link to={`/profile`}>Profile</Link>
               </Nav.Link>
             ) : null}
-
-            {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown> */}
           </Nav>
           {!user ? (
             <>

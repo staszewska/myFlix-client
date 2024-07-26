@@ -7,6 +7,13 @@ import Col from "react-bootstrap/Col";
 import "dotenv/config";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * component to display user profile
+ * @param {Object} - user
+ * @param {Array} - movies
+ * @param {Function} - onUserProfileUpdate
+ * @returns {JSX.Element}
+ */
 export const ProfileView = ({ user, movies, onUserProfileUpdate }) => {
   // console.log("movies:", movies);
   const [favoriteMovies, setFavoriteMovies] = useState([]);
@@ -47,7 +54,10 @@ export const ProfileView = ({ user, movies, onUserProfileUpdate }) => {
     });
   }, [user, movies]);
 
-  // handle form input changes
+  /**
+   * Handles input change in the profile form
+   * @param {Object} e - The event object.
+   */
   function handleInputChange(e) {
     const { name, value } = e.target;
     console.log("name", name);
@@ -58,6 +68,9 @@ export const ProfileView = ({ user, movies, onUserProfileUpdate }) => {
     }));
   }
 
+  /**
+   * Handles user deregistration
+   */
   function handleDeregisterClick() {
     alert("Caution: This is a destructive operation. Proceed with care");
 
@@ -93,7 +106,10 @@ export const ProfileView = ({ user, movies, onUserProfileUpdate }) => {
       });
   }
 
-  // Function to handle form submission
+  /**
+   * handles form submission to update user profile
+   * @param {Object} e - The event object.
+   */
   function handleSubmit(e) {
     e.preventDefault();
     // Submit updated user data to the server

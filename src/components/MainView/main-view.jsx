@@ -14,6 +14,11 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { GenreFilter } from "../Filter/genre-filter";
 import "dotenv/config";
 
+/**
+ * component handles routing and displays movies, user profile update,
+ * login, signup, and genre filter
+ * @returns {JSX.Element}
+ */
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
@@ -49,12 +54,19 @@ export const MainView = () => {
       });
   }, [token]);
 
+  /**
+   * handles user logout
+   */
   const handleLogout = () => {
     setUser(null);
     setToken(null);
     localStorage.clear();
   };
 
+  /**
+   * function to update user profile
+   * @param {Object} userData - user data
+   */
   const handleUserProfileUpdate = (userData) => {
     setUser(userData);
     if (!userData) {
@@ -64,11 +76,19 @@ export const MainView = () => {
     localStorage.setItem("user", JSON.stringify(userData));
   };
 
+  /*
+   * function to handle genre change
+   * @param {string} genre - selected genre
+   * */
+
   const handleGenreChange = (genre) => {
     setSelectedGenre(genre);
   };
 
-  //function to filter movies based on selected genre
+  /**
+   * function to filter movies based on selected genre
+   * @returns {Array} - filtered movies
+   */
   const filteredMovies = selectedGenre
     ? movies.filter((movie) => movie.genre === selectedGenre)
     : movies;
@@ -150,27 +170,6 @@ export const MainView = () => {
               </>
             }
           />
-
-          {/* <Route
-            path="/"
-            element={
-              <>
-                {!user ? (
-                  <Navigate to="/login" replace />
-                ) : movies.length === 0 ? (
-                  <Col>The list is empty!</Col>
-                ) : (
-                  <>
-                    {movies.map((movie) => (
-                      <Col className="mb-5" key={movie.id} md={3}>
-                        <MovieCard movie={movie} />
-                      </Col>
-                    ))}
-                  </>
-                )}
-              </>
-            }
-          /> */}
 
           <Route
             path="/"

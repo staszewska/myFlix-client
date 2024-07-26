@@ -2,6 +2,11 @@ import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+/**
+ * component to display a movie's information in a card format
+ * @param {Object}
+ * @returns {JSX.Element}
+ */
 export const MovieCard = ({ movie }) => {
   return (
     <Card className="h-100">

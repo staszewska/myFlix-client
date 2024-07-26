@@ -4,10 +4,21 @@ import Form from "react-bootstrap/Form";
 import { useState, useEffect } from "react";
 import "dotenv/config";
 
+/**
+ * component for user authentication
+ * @param {Object} props - The component's props.
+ * @param {Function} props.onLoggedIn - Callback function to handle successful login.
+ * @returns {JSX.Element} The rendered component.
+ */
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  /**
+   * handles form submission to log in the user;
+   * prevents default form submission
+   * @param {*} event
+   */
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -16,7 +27,7 @@ export const LoginView = ({ onLoggedIn }) => {
       Password: password,
     };
 
-    console.log("Login response: ", data);
+    // console.log("Login response: ", data);
 
     // fetch(`${process.env.DEV_API_URL}/login`, {
     fetch("https://movies-api-ms-b2173cbfa01b.herokuapp.com/login", {

@@ -8,6 +8,13 @@ import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import "dotenv/config";
 
+/**
+ * component to display detailed information about the movie
+ * @param {Array} - movies
+ * @param {Object} - user
+ * @param {Function} - onUserProfileUpdate
+ * @returns {JSX.Element}
+ */
 export const MovieView = ({ movies, user, onUserProfileUpdate }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [movie, setMovie] = useState(null);
@@ -38,7 +45,9 @@ export const MovieView = ({ movies, user, onUserProfileUpdate }) => {
     setIsFavorite(isMarkedAsFavorite);
   }, [movies, user.favoriteMovies, movieId]);
 
-  // function to handle adding movie to favorites
+  /**
+   * Handles adding the movie to the user's favorite list.
+   */
   function handleAddMovieAsFavorite() {
     // fetch(`${process.env.DEV_API_URL}/users/${user.Name}/movies/${movieId}`, {
     fetch(
@@ -69,6 +78,9 @@ export const MovieView = ({ movies, user, onUserProfileUpdate }) => {
       });
   }
 
+  /**
+   * Handles removing the movie from the user's favorite list.
+   */
   function handleDeleteMovieFromFavorite() {
     // fetch(`${process.env.DEV_API_URL}/users/${user.Name}/movies/${movieId}`, {
     fetch(
