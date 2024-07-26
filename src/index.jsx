@@ -8,7 +8,7 @@ import "./index.scss";
 
 /**
  * main component of the app
- * @returns
+ * @returns {JSX.Element}
  */
 const App = () => {
   return (
