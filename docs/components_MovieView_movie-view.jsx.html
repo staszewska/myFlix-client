@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/MovieView/movie-view.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/MovieView/movie-view.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router";
+import { useState, useEffect } from "react";
+import Button from "react-bootstrap/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
+import "dotenv/config";
+
+/**
+ * component to display detailed information about the movie
+ * @param {Array} - movies
+ * @param {Object} - user
+ * @param {Function} - onUserProfileUpdate
+ * @returns {JSX.Element}
+ */
+export const MovieView = ({ movies, user, onUserProfileUpdate }) => {
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [movie, setMovie] = useState(null);
+  const token = localStorage.getItem("token");
+  const { movieId } = useParams();
+  // console.log("my movie ID: ", movieId);
+
+  useEffect(() => {
+    console.log("my movies: ", movies);
+    if (!movies.length) {
+      return;
+    }
+
+    console.log("my movies: ", movies);
+    const movie = movies.find((m) => m.id === movieId);
+    console.log("my movie is: ", movie);
+    setMovie(movie);
+    console.log("my user: ", user);
+
+    if (!user.favoriteMovies) {
+      return;
+    }
+
+    const isMarkedAsFavorite = user.favoriteMovies.find(
+      (favoriteMovieId) => favoriteMovieId === movieId
+    );
+    console.log("[MovieView] isMarkedAsFavorite:", isMarkedAsFavorite);
+    setIsFavorite(isMarkedAsFavorite);
+  }, [movies, user.favoriteMovies, movieId]);
+
+  /**
+   * Handles adding the movie to the user's favorite list.
+   */
+  function handleAddMovieAsFavorite() {
+    // fetch(`${process.env.DEV_API_URL}/users/${user.Name}/movies/${movieId}`, {
+    fetch(
+      `https://movies-api-ms-b2173cbfa01b.herokuapp.com/users/${user.Name}/movies/${movieId}`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          // alert("Movie added to favorites successfully!");
+          return response.json();
+        } else {
+          alert("ERROR: Something went wrong!");
+        }
+      })
+      .then((updatedUser) => {
+        setIsFavorite(true);
+        console.log("[MovieView] updatedUser:", updatedUser);
+        onUserProfileUpdate(updatedUser);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  /**
+   * Handles removing the movie from the user's favorite list.
+   */
+  function handleDeleteMovieFromFavorite() {
+    // fetch(`${process.env.DEV_API_URL}/users/${user.Name}/movies/${movieId}`, {
+    fetch(
+      `https://movies-api-ms-b2173cbfa01b.herokuapp.com/users/${user.Name}/movies/${movieId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          // alert("Movie removed from favorites successfully!");
+          return response.json();
+        } else {
+          alert("ERROR: Something went wrong!");
+        }
+      })
+      .then((updatedUser) => {
+        setIsFavorite(false);
+        console.log("[MovieView] updatedUser:", updatedUser);
+        onUserProfileUpdate(updatedUser);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  return (
+    &lt;>
+      {movie ? (
+        &lt;div>
+          &lt;div>
+            &lt;img src={movie.image} />
+          &lt;/div>
+          &lt;div>
+            &lt;span>Title: &lt;/span>
+            &lt;span>{movie.title}&lt;/span>
+          &lt;/div>
+          &lt;div>
+            &lt;span>Director: &lt;/span>
+            &lt;span>{movie.director}&lt;/span>
+          &lt;/div>
+          &lt;div>
+            &lt;span>Description: &lt;/span>
+            &lt;span>{movie.description}&lt;/span>
+          &lt;/div>
+          &lt;div>
+            &lt;span>Genre: &lt;/span>
+            &lt;span>{movie.genre}&lt;/span>
+          &lt;/div>
+          &lt;div>
+            &lt;span>Genre-Description: &lt;/span>
+            &lt;span>{movie.genreDescription}&lt;/span>
+          &lt;/div>
+
+          {!isFavorite ? (
+            &lt;Button
+              onClick={handleAddMovieAsFavorite}
+              className="add-button"
+              variant="primary"
+            >
+              Add to favorites
+              {/* &lt;FontAwesomeIcon
+                icon={regularHeart}
+                style={{ marginLeft: "5px" }}
+              /> */}
+              &lt;FontAwesomeIcon
+                icon={solidHeart}
+                style={{ marginLeft: "5px", color: "red" }}
+              />
+            &lt;/Button>
+          ) : (
+            &lt;Button
+              onClick={handleDeleteMovieFromFavorite}
+              className="add-button"
+              variant="outline-primary"
+            >
+              Remove from favorites
+              &lt;FontAwesomeIcon
+                icon={regularHeart}
+                style={{ marginLeft: "5px" }}
+              />
+            &lt;/Button>
+          )}
+
+          &lt;Link to={`/`}>
+            &lt;Button className="back-button" variant="secondary">
+              Back
+            &lt;/Button>
+          &lt;/Link>
+        &lt;/div>
+      ) : (
+        &lt;h1>Loading movie&lt;/h1>
+      )}
+    &lt;/>
+  );
+};
+
+MovieView.propTypes = {
+  //   movie: PropTypes.shape({
+  //     title: PropTypes.string,
+  //     image: PropTypes.string,
+  //     director: PropTypes.string,
+  //     description: PropTypes.string,
+  //     genre: PropTypes.string,
+  //     genreDescription: PropTypes.string,
+  //   }).isRequired,
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#GenreFilter">GenreFilter</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#MainView">MainView</a></li><li><a href="global.html#MovieCard">MovieCard</a></li><li><a href="global.html#MovieView">MovieView</a></li><li><a href="global.html#NavBar">NavBar</a></li><li><a href="global.html#ProfileView">ProfileView</a></li><li><a href="global.html#SignupView">SignupView</a></li><li><a href="global.html#container">container</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Fri Jul 26 2024 20:40:07 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

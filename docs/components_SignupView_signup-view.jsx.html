@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/SignupView/signup-view.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/SignupView/signup-view.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react";
+import { useState, useEffect } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import "dotenv/config";
+import { useNavigate } from "react-router-dom";
+
+/**
+ * component for user registration
+ *
+ * @returns {JSX.Element}
+ */
+export const SignupView = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [birthday, setBirthday] = useState("");
+  const [country, setCountry] = useState("");
+  const [gender, setGender] = useState("");
+
+  let navigate = useNavigate();
+
+  /**
+   * handles form submission for user registration
+   *
+   * @param {Object} event
+   */
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const data = {
+      Name: username,
+      Password: password,
+      Email: email,
+      Birthday: birthday,
+      Country: country,
+      Gender: gender,
+    };
+
+    // fetch(`${process.env.DEV_API_URL}/users`, {
+    fetch(`https://movies-api-ms-b2173cbfa01b.herokuapp.com/users`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          alert("Signup successful");
+          // window.location.reload()
+          navigate("/login");
+        } else {
+          alert("Signup failed");
+        }
+      })
+      .catch((error) => {
+        console.error("Error: ", error);
+      });
+  };
+
+  return (
+    &lt;Form onSubmit={handleSubmit}>
+      &lt;Form.Group className="mb-3" controlId="formUsername">
+        &lt;Form.Label>Username: &lt;/Form.Label>
+
+        &lt;Form.Control
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+          minLength="3"
+        />
+      &lt;/Form.Group>
+
+      &lt;Form.Group controlId="formPassword">
+        &lt;Form.Label>Password: &lt;/Form.Label>
+        &lt;Form.Control
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+      &lt;/Form.Group>
+
+      &lt;Form.Group controlId="formEmail">
+        &lt;Form.Label>Email: &lt;/Form.Label>
+        &lt;Form.Control
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+      &lt;/Form.Group>
+
+      &lt;Form.Group controlId="formBirthday">
+        &lt;Form.Label>Birthday: &lt;/Form.Label>
+        &lt;Form.Control
+          type="date"
+          value={birthday}
+          onChange={(e) => setBirthday(e.target.value)}
+          required
+        />
+      &lt;/Form.Group>
+
+      &lt;Form.Group controlId="formCountry">
+        &lt;Form.Label>Country: &lt;/Form.Label>
+        &lt;Form.Control
+          type="text"
+          value={country}
+          onChange={(e) => setCountry(e.target.value)}
+          required
+        />
+      &lt;/Form.Group>
+
+      &lt;Form.Group controlId="formGender">
+        &lt;Form.Label>Gender: &lt;/Form.Label>
+        &lt;Form.Control
+          type="text"
+          value={gender}
+          onChange={(e) => setGender(e.target.value)}
+          required
+        />
+      &lt;/Form.Group>
+
+      &lt;Button variant="primary" type="submit">
+        Submit
+      &lt;/Button>
+    &lt;/Form>
+  );
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#GenreFilter">GenreFilter</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#MainView">MainView</a></li><li><a href="global.html#MovieCard">MovieCard</a></li><li><a href="global.html#MovieView">MovieView</a></li><li><a href="global.html#NavBar">NavBar</a></li><li><a href="global.html#ProfileView">ProfileView</a></li><li><a href="global.html#SignupView">SignupView</a></li><li><a href="global.html#container">container</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Fri Jul 26 2024 20:40:07 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,4 +1,32 @@
-import React, { useState } from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/MainView/main-view.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/MainView/main-view.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState } from "react";
 import { MovieCard } from "../MovieCard/movie-card";
 import { MovieView } from "../MovieView/movie-view";
 import { LoginView } from "../LoginView/login-view";
@@ -93,113 +121,136 @@ export const MainView = () => {
     : movies;
 
   return (
-    <BrowserRouter>
-      <NavBar user={user} onLogout={handleLogout} />
+    &lt;BrowserRouter>
+      &lt;NavBar user={user} onLogout={handleLogout} />
 
-      <Row className="mt-3">
-        <h1>Movie Filter</h1>
-        <GenreFilter onSelectGenre={handleGenreChange} />
-      </Row>
+      &lt;Row className="mt-3">
+        &lt;h1>Movie Filter&lt;/h1>
+        &lt;GenreFilter onSelectGenre={handleGenreChange} />
+      &lt;/Row>
 
-      <Row className="justify-content-md-center">
-        <Routes>
-          <Route
+      &lt;Row className="justify-content-md-center">
+        &lt;Routes>
+          &lt;Route
             path="/login"
             element={
-              <>
+              &lt;>
                 {!user ? (
-                  <Col md={5}>
-                    <LoginView
+                  &lt;Col md={5}>
+                    &lt;LoginView
                       onLoggedIn={(user, token) => {
                         setUser(user);
                         setToken(token);
                       }}
                     />
-                  </Col>
+                  &lt;/Col>
                 ) : (
-                  <Navigate to="/" />
+                  &lt;Navigate to="/" />
                 )}
-              </>
+              &lt;/>
             }
           />
 
-          <Route
+          &lt;Route
             path="/signup"
             element={
-              <>
+              &lt;>
                 {!user ? (
-                  <Col md={5}>
-                    <SignupView />
-                  </Col>
+                  &lt;Col md={5}>
+                    &lt;SignupView />
+                  &lt;/Col>
                 ) : (
-                  <Navigate to="/" />
+                  &lt;Navigate to="/" />
                 )}
-              </>
+              &lt;/>
             }
           />
 
-          <Route
+          &lt;Route
             path="/profile"
             element={
-              <>
-                <ProfileView
+              &lt;>
+                &lt;ProfileView
                   user={user}
                   movies={movies}
                   onUserProfileUpdate={handleUserProfileUpdate}
                 />
-              </>
+              &lt;/>
             }
           />
 
-          <Route
+          &lt;Route
             path="/movies/:movieId"
             element={
-              <>
+              &lt;>
                 {!user ? (
-                  <Navigate to="/login" />
+                  &lt;Navigate to="/login" />
                 ) : (
-                  <Col md={8}>
-                    <MovieView
+                  &lt;Col md={8}>
+                    &lt;MovieView
                       movies={movies}
                       user={user}
                       onUserProfileUpdate={handleUserProfileUpdate}
                     />
-                  </Col>
+                  &lt;/Col>
                 )}
-              </>
+              &lt;/>
             }
           />
 
-          <Route
+          &lt;Route
             path="/"
             element={
-              <>
+              &lt;>
                 {!user ? (
-                  <Navigate to="/login" replace />
-                ) : selectedGenre && filteredMovies.length === 0 ? (
-                  <Col>The list is empty!</Col>
+                  &lt;Navigate to="/login" replace />
+                ) : selectedGenre &amp;&amp; filteredMovies.length === 0 ? (
+                  &lt;Col>The list is empty!&lt;/Col>
                 ) : (
-                  <>
+                  &lt;>
                     {/* if both conditions are met we render filtered movies */}
                     {selectedGenre
                       ? filteredMovies.map((movie) => (
-                          <Col className="mb-5" key={movie.id} md={3}>
-                            <MovieCard movie={movie} />
-                          </Col>
+                          &lt;Col className="mb-5" key={movie.id} md={3}>
+                            &lt;MovieCard movie={movie} />
+                          &lt;/Col>
                         ))
                       : // render all movies
                         movies.map((movie) => (
-                          <Col className="mb-5" key={movie.id} md={3}>
-                            <MovieCard movie={movie} />
-                          </Col>
+                          &lt;Col className="mb-5" key={movie.id} md={3}>
+                            &lt;MovieCard movie={movie} />
+                          &lt;/Col>
                         ))}
-                  </>
+                  &lt;/>
                 )}
-              </>
+              &lt;/>
             }
           />
-        </Routes>
-      </Row>
-    </BrowserRouter>
+        &lt;/Routes>
+      &lt;/Row>
+    &lt;/BrowserRouter>
   );
 };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#GenreFilter">GenreFilter</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#MainView">MainView</a></li><li><a href="global.html#MovieCard">MovieCard</a></li><li><a href="global.html#MovieView">MovieView</a></li><li><a href="global.html#NavBar">NavBar</a></li><li><a href="global.html#ProfileView">ProfileView</a></li><li><a href="global.html#SignupView">SignupView</a></li><li><a href="global.html#container">container</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Fri Jul 26 2024 20:40:07 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
