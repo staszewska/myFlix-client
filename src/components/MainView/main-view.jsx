@@ -14,11 +14,11 @@ import { GenreFilter } from "../Filter/genre-filter";
 import "dotenv/config";
 
 /**
- * component handles routing and displays movies, user profile update,
- * login, signup, and genre filter
- * @returns {JSX.Element}
+ * MainView component handles routing and displays movies, user profile update,
+ * login, signup, and genre filter.
+ * @returns {JSX.Element} The rendered component.
  */
-export const MainView = () => {
+function MainView() {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
   const [movies, setMovies] = useState([]);
@@ -202,4 +202,4 @@ export const MainView = () => {
       </Row>
     </BrowserRouter>
   );
-};
+}

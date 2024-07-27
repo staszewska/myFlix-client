@@ -9,13 +9,14 @@ import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import "dotenv/config";
 
 /**
- * component to display detailed information about the movie
- * @param {Array} - movies
- * @param {Object} - user
- * @param {Function} - onUserProfileUpdate
- * @returns {JSX.Element}
+ * Component to display detailed information about the movie.
+ * @param {Object} props - The component props.
+ * @param {Array} props.movies - The list of movies.
+ * @param {Object} props.user - The user object.
+ * @param {Function} props.onUserProfileUpdate - Function to update the user profile.
+ * @returns {JSX.Element} The rendered component.
  */
-export const MovieView = ({ movies, user, onUserProfileUpdate }) => {
+export function MovieView({ movies, user, onUserProfileUpdate }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [movie, setMovie] = useState(null);
   const token = localStorage.getItem("token");
@@ -180,7 +181,7 @@ export const MovieView = ({ movies, user, onUserProfileUpdate }) => {
       )}
     </>
   );
-};
+}
 
 MovieView.propTypes = {
   //   movie: PropTypes.shape({

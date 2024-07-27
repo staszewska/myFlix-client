@@ -7,16 +7,16 @@ import { MainView } from "./components/MainView/main-view";
 import "./index.scss";
 
 /**
- * main component of the app
- * @returns {JSX.Element}
+ * Main component of the app.
+ * @returns {JSX.Element} The rendered app component.
  */
-const App = () => {
+function App() {
   return (
     <Container>
       <MainView />
     </Container>
   );
-};
+}
 
 /**
  * Finds the root of your app

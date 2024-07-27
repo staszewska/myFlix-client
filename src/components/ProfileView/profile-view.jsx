@@ -8,13 +8,14 @@ import "dotenv/config";
 import { useNavigate } from "react-router-dom";
 
 /**
- * component to display user profile
- * @param {Object} - user
- * @param {Array} - movies
- * @param {Function} - onUserProfileUpdate
- * @returns {JSX.Element}
+ * Component to display and update user profile.
+ * @param {Object} props - The component's props.
+ * @param {Object} props.user - The current user object.
+ * @param {Array} props.movies - The list of movies.
+ * @param {Function} props.onUserProfileUpdate - Callback function to handle user profile updates.
+ * @returns {JSX.Element} The rendered component.
  */
-export const ProfileView = ({ user, movies, onUserProfileUpdate }) => {
+function ProfileView({ user, movies, onUserProfileUpdate }) {
   // console.log("movies:", movies);
   const [favoriteMovies, setFavoriteMovies] = useState([]);
   const [userData, setUserData] = useState({
@@ -271,4 +272,4 @@ export const ProfileView = ({ user, movies, onUserProfileUpdate }) => {
       </Form>
     </>
   );
-};
+}

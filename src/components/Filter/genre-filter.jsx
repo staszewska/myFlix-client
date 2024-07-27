@@ -5,9 +5,12 @@ import { useParams } from "react-router";
 import "dotenv/config";
 
 /**
- * a component for filtering movies by genre
+ * Component for filtering movies by genre.
+ * @param {Object} props - The component props.
+ * @param {Function} props.onSelectGenre - Callback function to handle genre selection.
+ * @returns {JSX.Element} The rendered component.
  */
-export const GenreFilter = ({ onSelectGenre }) => {
+function GenreFilter({ onSelectGenre }) {
   const [genres, setGenres] = useState([]);
   // const { genre } = useParams();
   const token = localStorage.getItem("token");
@@ -55,4 +58,4 @@ export const GenreFilter = ({ onSelectGenre }) => {
       </Dropdown>
     </div>
   );
-};
+}

@@ -5,12 +5,13 @@ import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
 /**
- * component to display the navigation bar
- * @param {Object} - user
- * @param {Function} - onLogout
- * @returns {JSX.Element}
+ * Component to display the navigation bar.
+ * @param {Object} props - The component's props.
+ * @param {Object} props.user - The current user object.
+ * @param {Function} props.onLogout - Callback function to handle user logout.
+ * @returns {JSX.Element} The rendered component.
  */
-export const NavBar = ({ user, onLogout }) => {
+function NavBar({ user, onLogout }) {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
@@ -43,4 +44,4 @@ export const NavBar = ({ user, onLogout }) => {
       </Container>
     </Navbar>
   );
-};
+}

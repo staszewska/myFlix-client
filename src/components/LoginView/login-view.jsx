@@ -5,21 +5,21 @@ import { useState, useEffect } from "react";
 import "dotenv/config";
 
 /**
- * component for user authentication
+ * Component for user authentication.
  * @param {Object} props - The component's props.
  * @param {Function} props.onLoggedIn - Callback function to handle successful login.
  * @returns {JSX.Element} The rendered component.
  */
-export const LoginView = ({ onLoggedIn }) => {
+function LoginView({ onLoggedIn }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   /**
-   * handles form submission to log in the user;
-   * prevents default form submission
-   * @param {*} event
+   * Handles form submission to log in the user.
+   * Prevents default form submission.
+   * @param {React.FormEvent<HTMLFormElement>} event - The form submission event.
    */
-  const handleSubmit = (event) => {
+  function handleSubmit(event) {
     event.preventDefault();
 
     const data = {
@@ -52,7 +52,7 @@ export const LoginView = ({ onLoggedIn }) => {
       .catch((e) => {
         alert("Something went wrong");
       });
-  };
+  }
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -82,4 +82,4 @@ export const LoginView = ({ onLoggedIn }) => {
       </Form.Group>
     </Form>
   );
-};
+}

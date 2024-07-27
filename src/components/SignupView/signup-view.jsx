@@ -6,11 +6,10 @@ import "dotenv/config";
 import { useNavigate } from "react-router-dom";
 
 /**
- * component for user registration
- *
- * @returns {JSX.Element}
+ * Component for user registration.
+ * @returns {JSX.Element} The rendered component.
  */
-export const SignupView = () => {
+function SignupView() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -128,4 +127,4 @@ export const SignupView = () => {
       </Button>
     </Form>
   );
-};
+}
